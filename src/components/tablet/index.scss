@@ -1,0 +1,261 @@
+
+$tablet-height: 337px;
+$tablet-width: 500px;
+$transition-time: .9s;
+
+$shine-opacity-base: .3;
+$shine-opacity-offset-x: .2;
+$shine-opacity-offset-y: $shine-opacity-offset-x;
+$shine-offset-x: 200px;
+$shine-offset-y: 100px;
+$max-skew-x: -10deg;
+$max-skew-y: $max-skew-x;
+$perspective: 50em;
+
+.surface-container, .surface, .shine{
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: $tablet-width;
+  height: $tablet-height;
+}
+.surface, .shine{
+  background-color: #111;
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  transition: transform $transition-time;
+  border-radius: 10px;
+}
+.surface{
+  border: 2px solid #E6E6E6;
+  overflow: hidden;
+}
+.display{
+  transition: opacity $transition-time;
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  top: 25px;
+  bottom: 25px;
+  background-image: url(http://cdn.eteknix.com/wp-content/uploads/2015/03/windows-10-logo.png);
+  //background-image: url(http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2015/08/EOW-full-teaser-no-intro.gif);
+  background-size: contain;
+  z-index: 1;
+}
+/*
+.shine-bg($edge: 0%, $shine: 0){
+  
+}
+*/
+.shine{
+  width: $tablet-width + $shine-offset-x*2;
+  height: $tablet-height + $shine-offset-y*2;
+  margin: 0;
+  margin-left: -$shine-offset-x;
+  margin-top: -$shine-offset-y;
+  transition: left $transition-time, top $transition-time, opacity $transition-time;
+  background-color: transparent;
+  background-image:
+    linear-gradient(
+      115deg, 
+      rgba(255,255,255,0),
+      rgba(255,255,255,0) 60%,
+      rgba(255,255,255,1) 60%,
+      rgba(255,255,255,.8) 100%
+    );
+  z-index: 2;
+  opacity: $shine-opacity-base;
+}
+
+
+
+.sense{
+  width: 100px;
+  height: $tablet-height/4;
+  float: left;
+  &:hover, &.hover{
+    &+.surface{
+      transform: perspective($perspective) rotateX($max-skew-x) rotateY(-$max-skew-y);
+      .shine{
+        top: $shine-offset-y;
+        left: $shine-offset-x;
+        opacity: ($shine-opacity-base - $shine-opacity-offset-x - $shine-opacity-offset-y);
+      }
+      .display{
+        opacity: .8;
+      }
+    }
+    &+.sense+.surface{
+      transform: perspective($perspective) rotateX($max-skew-x) rotateY(-$max-skew-y/2);
+      .shine{
+        top: $shine-offset-y;
+        left: $shine-offset-x/2;
+        opacity: ($shine-opacity-base - $shine-opacity-offset-x - $shine-opacity-offset-y/2);
+      }
+      .display{
+        opacity: .9;
+      }
+    }
+    &+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX($max-skew-x) rotateY(0deg);
+      .shine{
+        top: $shine-offset-y;
+        left: 0;
+        opacity: $shine-opacity-base - $shine-opacity-offset-x;
+      }
+    }
+    &+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX($max-skew-x) rotateY($max-skew-y/2);
+      .shine{
+        top: $shine-offset-y;
+        left: -$shine-offset-x/2;
+        opacity: ($shine-opacity-base + $shine-opacity-offset-x - $shine-opacity-offset-y/2);
+      }
+    }
+    &+.sense+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX($max-skew-x) rotateY($max-skew-y);
+      .shine{
+        top: $shine-offset-y;
+        left: -$shine-offset-x;
+        opacity: ($shine-opacity-base + $shine-opacity-offset-x - $shine-opacity-offset-y);
+      }
+    }
+    
+    
+    
+    &+.sense+.sense+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX($max-skew-x/2) rotateY(-$max-skew-y);
+      .shine{
+        top: $shine-offset-y/2;
+        left: $shine-offset-x;
+        opacity: ($shine-opacity-base - $shine-opacity-offset-x - $shine-opacity-offset-y/2);
+      }
+      .display{
+        opacity: .9;
+      }
+    }
+    &+.sense+.sense+.sense+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX($max-skew-x/2) rotateY(-$max-skew-y/2);
+      .shine{
+        top: $shine-offset-y/2;
+        left: $shine-offset-x/2;
+        opacity: ($shine-opacity-base - $shine-opacity-offset-x/2 - $shine-opacity-offset-y/2);
+      }
+      .display{
+        opacity: .95;
+      }
+    }
+    &+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX($max-skew-x/2) rotateY(0deg);
+      .shine{
+        top: $shine-offset-y/2;
+        left: 0;
+        opacity: $shine-opacity-base;
+      }
+    }
+    &+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX($max-skew-x/2) rotateY($max-skew-y/2);
+      .shine{
+        top: $shine-offset-y/2;
+        left: -$shine-offset-x/2;
+        opacity: ($shine-opacity-base + $shine-opacity-offset-x/2 - $shine-opacity-offset-y/2);
+      }
+    }
+    &+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX($max-skew-x/2) rotateY($max-skew-y);
+      .shine{
+        top: $shine-offset-y/2;
+        left: -$shine-offset-x;
+        opacity: ($shine-opacity-base + $shine-opacity-offset-x - $shine-opacity-offset-y/2);
+      }
+    }
+    
+    
+    
+    &+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX(-$max-skew-x/2) rotateY(-$max-skew-y);
+      .shine{
+        top: -$shine-offset-y/2;
+        left: $shine-offset-x;
+        opacity: ($shine-opacity-base - $shine-opacity-offset-x + $shine-opacity-offset-y/2);
+      }
+    }
+    &+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX(-$max-skew-x/2) rotateY(-$max-skew-y/2);
+      .shine{
+        top: -$shine-offset-y/2;
+        left: $shine-offset-x/2;
+        opacity: ($shine-opacity-base - $shine-opacity-offset-x/2 + $shine-opacity-offset-y/2);
+      }
+    }
+    &+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX(-$max-skew-x/2) rotateY(0deg);
+      .shine{
+        top: -$shine-offset-y/2;
+        left: 0;
+        opacity: $shine-opacity-base + $shine-opacity-offset-y/2;
+      }
+    }
+    &+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX(-$max-skew-x/2) rotateY($max-skew-y/2);
+      .shine{
+        top: -$shine-offset-y/2;
+        left: -$shine-offset-x/2;
+        opacity: ($shine-opacity-base + $shine-opacity-offset-x/2 + $shine-opacity-offset-y/2);
+      }
+    }
+    &+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX(-$max-skew-x/2) rotateY($max-skew-y);
+      .shine{
+        top: -$shine-offset-y/2;
+        left: -$shine-offset-x;
+        opacity: ($shine-opacity-base + $shine-opacity-offset-x + $shine-opacity-offset-y/2);
+      }
+    }
+    
+    
+    
+    &+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX(-$max-skew-x) rotateY(-$max-skew-y);
+      .shine{
+        top: -$shine-offset-y;
+        left: $shine-offset-x;
+        opacity: ($shine-opacity-base - $shine-opacity-offset-x + $shine-opacity-offset-y);
+      }
+    }
+    &+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX(-$max-skew-x) rotateY(-$max-skew-y/2);
+      .shine{
+        top: -$shine-offset-y;
+        left: $shine-offset-x/2;
+        opacity: ($shine-opacity-base - $shine-opacity-offset-x/2 + $shine-opacity-offset-y);
+      }
+    }
+    &+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX(-$max-skew-x) rotateY(0deg);
+      .shine{
+        top: -$shine-offset-y;
+        left: 0;
+        opacity: $shine-opacity-base + $shine-opacity-offset-y;
+      }
+    }
+    &+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX(-$max-skew-x) rotateY($max-skew-y/2);
+      .shine{
+        top: -$shine-offset-y;
+        left: -$shine-offset-x/2;
+        opacity: ($shine-opacity-base + $shine-opacity-offset-x/2 + $shine-opacity-offset-y);
+      }
+    }
+    &+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.sense+.surface{
+      transform: perspective($perspective) rotateX(-$max-skew-x) rotateY($max-skew-y);
+      .shine{
+        top: -$shine-offset-y;
+        left: -$shine-offset-x;
+        opacity: ($shine-opacity-base + $shine-opacity-offset-x + $shine-opacity-offset-y);
+      }
+    }
+  }
+}

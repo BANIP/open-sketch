@@ -1,0 +1,41 @@
+@import 'palette';
+
+
+#menu{
+    display:flex;
+    position:fixed;
+    z-index: 999;
+    top:0;
+    left:0;
+    width:100%;
+    align-items: center;
+
+
+    $background-opacity: 0.8;
+    background:linear-gradient(to right, 
+            rgba($primary-color,$background-opacity), 
+            rgba(adjust-hue($primary-color, 30deg),$background-opacity) );
+    border-bottom:1px solid $accent-color;
+    box-shadow:0px 1px 2px $primary-color-light;
+
+    .menuitem{
+        display:inline-block;
+        height:3em;
+        line-height:3em;
+        padding:0 0.5em;
+        background: rgba($primary-color-text,0);
+        transition: background 0.2s;
+        &:hover{
+            background: rgba($primary-color-text,0.5);
+        }
+
+        &:first-child{
+            left-margin:3em;
+        }
+    }
+
+    .itemlink{
+        color: $primary-color-text;
+        text-weight: bold;
+    }
+}

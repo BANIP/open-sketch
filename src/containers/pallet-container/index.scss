@@ -1,0 +1,6 @@
+@import 'main';
+
+.pallet{
+    @extend %absolutly;
+    pointer-events: none;
+}

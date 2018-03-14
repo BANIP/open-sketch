@@ -1,0 +1,89 @@
+@import 'main';
+.sideBar{
+    @extend %absolutly;
+    @extend %flex-center;
+
+    width:5%;
+    background:$primary-color;
+    pointer-events:auto;
+    font-size:smaller;
+
+    &.left, &.right{
+        width:2.4em;
+        flex-direction:column;
+    }
+    &.right{
+        left:auto;
+        right:0!important;
+    }
+
+    &.top, &.bottom{
+        height:2.4em;
+    }
+    &.bottom{
+        bottom:0;
+    }
+}
+
+.icon{
+    @extend %flex-center;
+    padding:0.1em;
+    color:white;
+
+    &.active{
+        color:$primary-color;
+        background: $primary-color-light;        
+    }
+
+    &:hover:not(.active){
+        background:lighten($primary-color,10%);
+    }
+    width:100%;
+}
+
+.toolsGroup{
+    width:100%;
+    color: #FFFFFF;
+    font-size:smaller;
+    
+    .header{
+        background:$primary-color-dark;
+        padding: 0.2em;
+        display: flex;
+        align-items: center;
+
+        .title{
+
+        }
+
+        .btnToggle{
+            font-size:0.5em;
+            margin-right:0.5em;
+            transition:transform .2s;
+            transform:rotate(0deg);
+            cursor:pointer;
+            &.isVisible{
+                display:inline-block;
+                transform:rotate(-70deg);
+            }
+        }
+    }
+
+    .content{
+        @extend %flex-center;
+        flex-direction: column;
+
+        opacity:1;
+        border-bottom:1px solid #303F9F;
+        padding:.5em;
+
+        //transition:all 0.2s linear;
+
+        &.hide{
+            opacity: 0;
+            padding:0;
+            height:0;
+            display:none;
+        }
+    }
+}

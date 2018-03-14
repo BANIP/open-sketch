@@ -1,0 +1,43 @@
+@import "palette";
+
+
+.titleHeading{
+    text-align:center;
+    width:150%;
+    height:60vw;
+    font-size:1.5em;
+    transform: translate(-12%,-48%) rotate(20deg);
+
+    h1{
+        height:100%;
+        font-size:1.5em;
+    }
+    
+    $text-right-margin:40%;
+    .titieWrap{
+        position:relative;
+        height:80%;
+        background:$accent-color;
+
+        .titleContainer{
+            position:absolute;
+            right:$text-right-margin;
+            bottom:.5em;
+            color:$primary-color-text;
+        }
+    }
+
+    .subWrap{
+        position:relative;
+        font-size:0.7em;
+        height:20%;
+        color:$accent-color;
+
+        .subContainer{
+            position:absolute;
+            right:$text-right-margin;
+            top:0;
+            color:$accent-color;
+        }
+    }
+}
